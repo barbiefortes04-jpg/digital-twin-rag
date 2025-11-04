@@ -35,10 +35,10 @@ export default function Header() {
           <div className="flex items-center gap-6">
             <nav className="hidden md:flex gap-6">
               <Link href="/about" className="text-gray-300 hover:text-white transition">About</Link>
+              <Link href="/monitoring" className="text-gray-300 hover:text-white transition">Monitoring</Link>
+              <Link href="/scalability" className="text-gray-300 hover:text-white transition">Scalability</Link>
+              <Link href="/operations" className="text-gray-300 hover:text-white transition">Operations</Link>
               <Link href="/testing" className="text-gray-300 hover:text-white transition">Testing</Link>
-              <Link href="/profile-data" className="text-gray-300 hover:text-white transition">Profile Data</Link>
-              <Link href="/advanced-features" className="text-gray-300 hover:text-white transition">Advanced Features</Link>
-              <Link href="/optimization" className="text-gray-300 hover:text-white transition">Optimization</Link>
               <Link href="/github" className="text-gray-300 hover:text-white transition">GitHub</Link>
             </nav>
 

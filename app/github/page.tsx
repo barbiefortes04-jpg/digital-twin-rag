@@ -1,7 +1,7 @@
 export default function GitHubPage() {
   // Read repository and deployment URLs from environment (override defaults)
-  const githubRepoUrl = process.env.NEXT_PUBLIC_GITHUB_REPO ?? "https://github.com/yourusername/digital-twin-rag";
-  const deploymentUrl = process.env.NEXT_PUBLIC_DEPLOYMENT_URL ?? "https://your-deployment.example.com";
+  const githubRepoUrl = process.env.NEXT_PUBLIC_GITHUB_REPO ?? "https://github.com/barbiefortes04-jpg/digital-twin-rag";
+  const deploymentUrl = process.env.NEXT_PUBLIC_DEPLOYMENT_URL ?? "https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app";
   
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100">
