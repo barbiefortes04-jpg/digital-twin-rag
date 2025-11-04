@@ -1,7 +1,9 @@
+'use client';
+
 export default function GitHubPage() {
-  // Read repository and deployment URLs from environment (override defaults)
-  const githubRepoUrl = process.env.NEXT_PUBLIC_GITHUB_REPO ?? "https://github.com/barbiefortes04-jpg/digital-twin-rag";
-  const deploymentUrl = process.env.NEXT_PUBLIC_DEPLOYMENT_URL ?? "https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app";
+  // Repository and deployment URLs
+  const githubRepoUrl = "https://github.com/barbiefortes04-jpg/digital-twin-rag";
+  const deploymentUrl = typeof window !== 'undefined' ? window.location.origin : "https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app";
   
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100">
@@ -34,6 +36,7 @@ export default function GitHubPage() {
 
             <div>
               <h3 className="text-lg font-semibold text-white mb-2">Repository URL</h3>
+              <p className="text-sm text-gray-400 mb-3 break-all">{githubRepoUrl}</p>
               <a
                 href={githubRepoUrl}
                 target="_blank"
@@ -51,7 +54,8 @@ export default function GitHubPage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold text-white mb-2">Deployment</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">Deployment URL</h3>
+              <p className="text-sm text-gray-400 mb-3 break-all">{deploymentUrl}</p>
               <a
                 href={deploymentUrl}
                 target="_blank"
