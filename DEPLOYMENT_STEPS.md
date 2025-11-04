@@ -50,7 +50,7 @@ git push origin main
 4. Select your `digital-twin-rag` repository
 5. Click **"Deploy"** (Vercel auto-detects Next.js settings)
 6. Wait 2-3 minutes
-7. Get your URL: `https://your-project.vercel.app`
+7. Get your URL: `https://digital-twin-rag-git-main-barbiefortes04-jpgs-projects.vercel.app/`
 
 ---
 
