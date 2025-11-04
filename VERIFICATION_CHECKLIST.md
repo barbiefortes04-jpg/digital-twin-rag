@@ -10,7 +10,7 @@
 - **Files**: 40+ files committed
 
 ### **Deployment URL**
-- **URL**: https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
+- **URL**: https://digital-twin-rag-gamma.vercel.app
 - **Status**: ✅ DEPLOYED
 - **Platform**: Vercel Edge Network
 - **Auto-Deploy**: Enabled (updates automatically on git push)
@@ -145,7 +145,7 @@ Route (app)
 
 ### ✅ **Single Production URL**
 ```
-https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
+https://digital-twin-rag-gamma.vercel.app
 ```
 
 ### ✅ **Enterprise Features**
@@ -175,7 +175,7 @@ https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
 ## 🧪 **Testing Instructions**
 
 ### **1. Test GitHub Link**
-1. Visit: https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app/github
+1. Visit: https://digital-twin-rag-gamma.vercel.app/github
 2. Click "View on GitHub" button
 3. Should open: https://github.com/barbiefortes04-jpg/digital-twin-rag
 4. ✅ Verify repository is accessible
@@ -183,7 +183,7 @@ https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
 ### **2. Test Deployment Link**
 1. On same `/github` page
 2. Click "View Deployment" button
-3. Should open: https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
+3. Should open: https://digital-twin-rag-gamma.vercel.app
 4. ✅ Verify site loads correctly
 
 ### **3. Test Monitoring**
@@ -236,7 +236,7 @@ https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
 
 **Submit this URL:**
 ```
-https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
+https://digital-twin-rag-gamma.vercel.app
 ```
 
 **GitHub Repository:**

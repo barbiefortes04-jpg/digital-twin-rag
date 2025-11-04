@@ -3,7 +3,7 @@
 export default function GitHubPage() {
   // Repository and deployment URLs
   const githubRepoUrl = "https://github.com/barbiefortes04-jpg/digital-twin-rag";
-  const deploymentUrl = typeof window !== 'undefined' ? window.location.origin : "https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app";
+  const deploymentUrl = "https://digital-twin-rag-gamma.vercel.app";
   
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100">

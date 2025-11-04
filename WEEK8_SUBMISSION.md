@@ -4,7 +4,7 @@
 
 **Production URL (24/7 Accessible):**
 ```
-https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
+https://digital-twin-rag-gamma.vercel.app
 ```
 
 ---
@@ -238,7 +238,7 @@ All APIs return JSON with:
 ### Monitoring Deployment
 - Vercel Dashboard: https://vercel.com/dashboard
 - GitHub Repository: https://github.com/barbiefortes04-jpg/digital-twin-rag
-- Live Site: https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
+- Live Site: https://digital-twin-rag-gamma.vercel.app
 
 ---
 
@@ -273,7 +273,7 @@ All APIs return JSON with:
 
 ### 1. Access the Production URL
 ```
-https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
+https://digital-twin-rag-gamma.vercel.app
 ```
 
 ### 2. Verify Core Functionality
@@ -313,8 +313,14 @@ https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
 
 ## 🔗 Quick Links
 
-- **Production URL**: https://digital-twin-ragui-5nmyh3785-barbiefortes04-jpgs-projects.vercel.app
-- **GitHub Repository**: https://github.com/barbiefortes04-jpg/digital-twin-rag
+- **Submit this URL for Week 8:** 
+```
+https://digital-twin-rag-gamma.vercel.app
+```
+- **GitHub Repository:** 
+```
+https://github.com/barbiefortes04-jpg/digital-twin-rag
+```
 - **Monitoring Dashboard**: /monitoring
 - **Load Testing**: /scalability
 - **Operations Guide**: /operations

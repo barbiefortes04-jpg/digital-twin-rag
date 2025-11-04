@@ -58,13 +58,13 @@ git push origin main
 
 After deployment, test these pages:
 
-- ✅ **Home** - `https://your-url.vercel.app/`
-- ✅ **About** - `https://your-url.vercel.app/about`
-- ✅ **Testing** - `https://your-url.vercel.app/testing`
-- ✅ **Profile Data** - `https://your-url.vercel.app/profile-data`
-- ✅ **GitHub** - `https://your-url.vercel.app/github`
-- ✅ **API Query** - `https://your-url.vercel.app/api/query`
-- ✅ **API Metrics** - `https://your-url.vercel.app/api/metrics`
+- ✅ **Home** - `https://digital-twin-rag-gamma.vercel.app/`
+- ✅ **About** - `https://digital-twin-rag-gamma.vercel.app/about`
+- ✅ **Testing** - `https://digital-twin-rag-gamma.vercel.app/testing`
+- ✅ **Profile Data** - `https://digital-twin-rag-gamma.vercel.app/profile-data`
+- ✅ **GitHub** - `https://digital-twin-rag-gamma.vercel.app/github`
+- ✅ **API Query** - `https://digital-twin-rag-gamma.vercel.app/api/query`
+- ✅ **API Metrics** - `https://digital-twin-rag-gamma.vercel.app/api/metrics`
 
 ---
 
@@ -165,7 +165,7 @@ Route (app)
 
 1. **Wait 10-20 seconds** - First load downloads ML model (~20MB)
 2. **Check browser console** for errors
-3. **Test API endpoint**: `https://your-url.vercel.app/api/query`
+3. **Test API endpoint**: `https://digital-twin-rag-gamma.vercel.app/api/query`
 4. **Refresh the page** - Model caches after first load
 
 ---
