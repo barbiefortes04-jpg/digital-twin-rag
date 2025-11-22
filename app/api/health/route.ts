@@ -10,7 +10,7 @@ export async function GET() {
     const checks = {
       api: true, // API is responding
       embeddings: stats.isInitialized,
-      vectorStore: stats.totalDocuments > 0,
+      vectorStore: typeof stats.totalDocuments === 'number' ? stats.totalDocuments > 0 : stats.totalDocuments !== 'Managed by Upstash Vector',
       cache: true // Cache is always available
     };
 

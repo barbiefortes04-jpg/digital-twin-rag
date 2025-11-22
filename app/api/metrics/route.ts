@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const rag = getRAGSystem();
     // Ensure initialized (non-blocking)
-    try { await rag.initialize(); } catch (e) { /* ignore init errors here */ }
+    try { await rag.initialize(); } catch { /* ignore init errors here */ }
     const stats = rag.getStats();
     
     // Calculate uptime in seconds

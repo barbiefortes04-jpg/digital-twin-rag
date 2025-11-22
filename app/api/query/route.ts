@@ -40,11 +40,14 @@ export async function POST(request: NextRequest) {
     await initializeSystem();
     
     const ragSystem = getRAGSystem();
+    
+    // Handle batch queries
     if (Array.isArray(queries) && queries.length > 0) {
       const results = await ragSystem.batchQuery(queries, 5);
       return NextResponse.json({ success: true, results, timestamp: new Date().toISOString() });
     }
 
+    // Handle single query
     const result = await ragSystem.query(query, 5);
 
     return NextResponse.json({
@@ -57,10 +60,24 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Query error:', error);
+    
+    // Provide more specific error information for debugging
+    let errorMessage = 'Failed to process query';
+    let errorDetails = error instanceof Error ? error.message : 'Unknown error';
+    
+    if (errorDetails.includes('Vector index not available')) {
+      errorMessage = 'Vector database configuration issue';
+      errorDetails = 'Please check Upstash Vector credentials in environment variables';
+    } else if (errorDetails.includes('Groq')) {
+      errorMessage = 'AI service issue';
+      errorDetails = 'Groq AI service error - falling back to rule-based responses';
+    }
+
     return NextResponse.json(
       { 
-        error: 'Failed to process query',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        error: errorMessage,
+        details: errorDetails,
+        suggestion: 'Check environment variables and service configurations'
       },
       { status: 500 }
     );

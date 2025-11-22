@@ -186,12 +186,12 @@ const testQueries: TestQuery[] = [
 ];
 
 export default function TestingPage() {
-  const [results, setResults] = useState<Map<number, any>>(new Map());
+  const [results, setResults] = useState<Map<number, unknown>>(new Map());
   const [testing, setTesting] = useState(false);
   const [currentTest, setCurrentTest] = useState(0);
   const [mode, setMode] = useState<'sequential' | 'batched' | 'both'>('both');
   const [platform, setPlatform] = useState<'web' | 'slack' | 'teams' | 'mobile'>('web');
-  const [metrics, setMetrics] = useState<any>(null);
+  const [metrics, setMetrics] = useState<Record<string, unknown> | null>(null);
 
   const runSingleTest = async (query: TestQuery, platformTag = 'web') => {
     try {
@@ -259,7 +259,7 @@ export default function TestingPage() {
       const duration = Date.now() - start;
 
       if (Array.isArray(data.results)) {
-        data.results.forEach((res: any, idx: number) => {
+        data.results.forEach((res: { confidence?: number; answer?: string }, idx: number) => {
           const q = testQueries[idx];
           const passed = (res.confidence ?? 0) > 0.5;
           setResults(prev => new Map(prev).set(q.id, { answer: res.answer ?? '', confidence: res.confidence ?? 0, passed, timestamp: new Date().toISOString() }));
@@ -288,7 +288,7 @@ export default function TestingPage() {
   };
 
   const categories = Array.from(new Set(testQueries.map(q => q.category)));
-  const passedTests = Array.from(results.values()).filter(r => r.passed).length;
+  const passedTests = Array.from(results.values()).filter(r => (r as { passed?: boolean })?.passed).length;
   const totalTested = results.size;
   const passRate = totalTested > 0 ? (passedTests / totalTested * 100).toFixed(1) : '0';
 
@@ -317,7 +317,17 @@ export default function TestingPage() {
 
   // Export test results as JSON or CSV
   const exportResults = (format: 'json' | 'csv') => {
-    const records = Array.from(results.entries()).map(([id, r]) => ({ id, query: testQueries.find(q => q.id === id)?.query ?? '', answer: r.answer, confidence: r.confidence, passed: r.passed, timestamp: r.timestamp }));
+    const records = Array.from(results.entries()).map(([id, r]) => {
+      const result = r as { answer?: string; confidence?: number; passed?: boolean; timestamp?: string };
+      return { 
+        id, 
+        query: testQueries.find(q => q.id === id)?.query ?? '', 
+        answer: result.answer ?? '', 
+        confidence: result.confidence ?? 0, 
+        passed: result.passed ?? false, 
+        timestamp: result.timestamp ?? '' 
+      };
+    });
     if (format === 'json') {
       const blob = new Blob([JSON.stringify({ metrics, passRate, totalTested, records }, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
@@ -334,7 +344,7 @@ export default function TestingPage() {
     const lines = [header.join(',')];
     for (const rec of records) {
       const escaped = header.map(h => {
-        const v = String((rec as any)[h] ?? '');
+        const v = String((rec as Record<string, unknown>)[h] ?? '');
         return `"${v.replace(/"/g, '""')}"`;
       }).join(',');
       lines.push(escaped);
@@ -364,13 +374,13 @@ export default function TestingPage() {
             </div>
 
             <div className="flex items-center gap-3">
-              <select value={mode} onChange={e => setMode(e.target.value as any)} className="bg-gray-700 text-gray-200 px-3 py-2 rounded">
+              <select value={mode} onChange={e => setMode(e.target.value as 'sequential' | 'batched' | 'both')} className="bg-gray-700 text-gray-200 px-3 py-2 rounded">
                 <option value="both">Both (sequential + batched)</option>
                 <option value="sequential">Sequential (baseline)</option>
                 <option value="batched">Batched (optimized)</option>
               </select>
 
-              <select value={platform} onChange={e => setPlatform(e.target.value as any)} className="bg-gray-700 text-gray-200 px-3 py-2 rounded">
+              <select value={platform} onChange={e => setPlatform(e.target.value as 'web' | 'slack' | 'teams' | 'mobile')} className="bg-gray-700 text-gray-200 px-3 py-2 rounded">
                 <option value="web">Web</option>
                 <option value="slack">Slack</option>
                 <option value="teams">Teams</option>
@@ -420,7 +430,7 @@ export default function TestingPage() {
                 .filter(q => q.category === category)
                 .map(q => results.get(q.id))
                 .filter(r => r !== undefined);
-              const categoryPassed = categoryResults.filter(r => r?.passed).length;
+              const categoryPassed = categoryResults.filter(r => (r as { passed?: boolean })?.passed).length;
               const categoryTotal = categoryResults.length;
 
               return (
@@ -445,15 +455,15 @@ export default function TestingPage() {
         {/* Test Results */}
         <div className="space-y-4">
           {testQueries.map(query => {
-            const result = results.get(query.id);
-            const confidenceInfo = result ? calculateConfidenceLevel(result.confidence) : null;
+            const result = results.get(query.id) as { answer?: string; confidence?: number; passed?: boolean; timestamp?: string } | undefined;
+            const confidenceInfo = result ? calculateConfidenceLevel(result.confidence ?? 0) : null;
 
             return (
               <div
                 key={query.id}
               className={cn(
                   "bg-gray-800 rounded-xl shadow-lg p-6 transition-all",
-                  result && (result.passed ? "border-l-4 border-green-500" : "border-l-4 border-yellow-500")
+                  result?.passed ? "border-l-4 border-green-500" : "border-l-4 border-yellow-500"
                 )}
               >
                 <div className="flex items-start justify-between mb-3">
@@ -473,7 +483,7 @@ export default function TestingPage() {
                   {result && confidenceInfo && (
                     <div className="text-right ml-4">
                       <div className={cn("text-lg font-bold", confidenceInfo.color)}>
-                        {(result.confidence * 100).toFixed(1)}%
+                        {((result.confidence ?? 0) * 100).toFixed(1)}%
                       </div>
                       <div className="text-xs text-gray-500">{confidenceInfo.level}</div>
                     </div>
@@ -485,17 +495,17 @@ export default function TestingPage() {
                     <div className="flex items-center gap-2 mb-2">
                       <span className={cn(
                         "px-2 py-1 rounded text-xs font-medium",
-                        result.passed ? "bg-green-900 text-green-200" : "bg-yellow-900 text-yellow-200"
+                        result?.passed ? "bg-green-900 text-green-200" : "bg-yellow-900 text-yellow-200"
                       )}>
-                        {result.passed ? "✓ PASSED" : "⚠ LOW CONFIDENCE"}
+                        {result?.passed ? "✓ PASSED" : "⚠ LOW CONFIDENCE"}
                       </span>
                       <span className="text-xs text-gray-400">
-                        {new Date(result.timestamp).toLocaleTimeString()}
+                        {new Date(result.timestamp ?? '').toLocaleTimeString()}
                       </span>
                     </div>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      {result.answer.slice(0, 300)}
-                      {result.answer.length > 300 && '...'}
+                      {(result.answer ?? '').slice(0, 300)}
+                      {(result.answer ?? '').length > 300 && '...'}
                     </p>
                   </div>
                 )}

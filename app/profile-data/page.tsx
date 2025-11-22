@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { professionalProfile, starExamples, additionalContent } from '@/lib/profile-data';
 
 export default function ProfileDataPage() {

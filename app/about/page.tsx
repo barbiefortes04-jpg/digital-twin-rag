@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100">
@@ -265,7 +263,7 @@ export default function AboutPage() {
                 and context of the text.
               </p>
               <code className="text-xs bg-gray-900 text-green-400 px-3 py-2 rounded block overflow-x-auto">
-                embedding = model(text, pooling='mean', normalize=true)
+                embedding = model(text, pooling=&apos;mean&apos;, normalize=true)
               </code>
             </div>
 
